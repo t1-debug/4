@@ -1,934 +1,713 @@
 <!DOCTYPE html>
-<html lang="ko" class="scroll-smooth">
+<html lang="ko">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>이루다 독서실 - Study Studio IRUDA</title>
-    <!-- Tailwind CSS -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            50: '#f0fdf4',
-                            100: '#dcfce7',
-                            200: '#bbf7d0',
-                            600: '#16a34a',
-                            700: '#15803d',
-                            800: '#166534',
-                            900: '#14532d',
-                        },
-                        wood: {
-                            50: '#fdfbf7',
-                            100: '#f5efe6',
-                            200: '#e6d5c3',
-                            800: '#78350f',
-                            900: '#451a03',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Noto Sans KR', 'Inter', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        body {
-            font-family: 'Noto Sans KR', 'Inter', sans-serif;
-            background-color: #fafaf9;
-        }
-        .gallery-card:hover .gallery-overlay {
-            opacity: 1;
-        }
-        /* Custom scrollbar */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #15803d;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #14532d;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>이루다 독서실 대전관평점 - 프리미엄 스터디 공간</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&family=Playfair+Display:ital,wght@0,600;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      scroll-behavior: smooth;
+    }
+    .font-serif-eng {
+      font-family: 'Playfair Display', serif;
+    }
+    .bg-brand-green {
+      background-color: #2D5A27;
+    }
+    .text-brand-green {
+      color: #2D5A27;
+    }
+    .border-brand-green {
+      borderColor: #2D5A27;
+    }
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #86a982;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #2D5A27;
+    }
+  </style>
 </head>
-<body class="text-zinc-800 antialiased overflow-x-hidden">
+<body class="bg-stone-50 text-stone-800 antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- Navigation Bar -->
-    <nav class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-zinc-100 shadow-sm transition-all duration-300">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                <div class="flex items-center gap-3">
-                    <img src="image_47676c.jpg" alt="이루다 로고" class="h-12 w-12 rounded-lg object-cover shadow-sm border border-brand-100" onerror="this.src='https://placehold.co/100x100/15803d/ffffff?text=IRUDA'">
-                    <div>
-                        <span class="text-xl font-black text-brand-800 tracking-tight block">이루다</span>
-                        <span class="text-xs text-zinc-400 font-semibold tracking-wider uppercase block -mt-1">Study Studio</span>
-                    </div>
-                </div>
-                
-                <!-- Desktop Nav Links -->
-                <div class="hidden md:flex items-center space-x-8">
-                    <a href="#about" class="text-zinc-600 hover:text-brand-700 font-medium transition-colors">소개</a>
-                    <a href="#gallery" class="text-zinc-600 hover:text-brand-700 font-medium transition-colors">공간 안내</a>
-                    <a href="#pricing" class="text-zinc-600 hover:text-brand-700 font-medium transition-colors">이용 요금</a>
-                    <a href="#booking" class="text-zinc-600 hover:text-brand-700 font-medium transition-colors">예약/문의</a>
-                    <a href="#location" class="text-zinc-600 hover:text-brand-700 font-medium transition-colors">위치</a>
-                    <a href="#booking" class="bg-brand-700 hover:bg-brand-800 text-white px-5 py-2.5 rounded-full text-sm font-bold shadow-md hover:shadow-lg transition-all duration-300 flex items-center gap-2">
-                        <i class="fa-solid fa-calendar-check text-xs"></i> 실시간 문의하기
-                    </a>
-                </div>
-
-                <!-- Mobile Menu Button -->
-                <div class="md:hidden">
-                    <button id="mobile-menu-btn" class="text-zinc-600 hover:text-brand-700 focus:outline-none p-2 rounded-lg hover:bg-zinc-100 transition-colors">
-                        <i class="fa-solid fa-bars text-2xl"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-
-        <!-- Mobile Nav Menu -->
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-zinc-100 py-4 px-6 space-y-3 shadow-inner">
-            <a href="#about" class="block text-zinc-700 hover:text-brand-700 font-medium py-2 border-b border-zinc-50" onclick="toggleMobileMenu()">소개</a>
-            <a href="#gallery" class="block text-zinc-700 hover:text-brand-700 font-medium py-2 border-b border-zinc-50" onclick="toggleMobileMenu()">공간 안내</a>
-            <a href="#pricing" class="block text-zinc-700 hover:text-brand-700 font-medium py-2 border-b border-zinc-50" onclick="toggleMobileMenu()">이용 요금</a>
-            <a href="#booking" class="block text-zinc-700 hover:text-brand-700 font-medium py-2 border-b border-zinc-50" onclick="toggleMobileMenu()">예약/문의</a>
-            <a href="#location" class="block text-zinc-700 hover:text-brand-700 font-medium py-2" onclick="toggleMobileMenu()">위치</a>
-            <a href="#booking" class="w-full text-center bg-brand-700 hover:bg-brand-800 text-white px-5 py-3 rounded-xl text-base font-bold shadow-md block transition-all" onclick="toggleMobileMenu()">
-                <i class="fa-solid fa-calendar-check mr-2"></i> 실시간 문의하기
-            </a>
-        </div>
-    </nav>
-
-    <!-- Hero / Main Header -->
-    <header class="relative bg-brand-900 text-white overflow-hidden py-24 md:py-32">
-        <div class="absolute inset-0 z-0">
-            <img src="image_47678e.jpg" alt="이루다 메인 전경" class="w-full h-full object-cover opacity-35 filter brightness-75 scale-105" onerror="this.src='https://placehold.co/1200x600/14532d/ffffff?text=IRUDA+STUDIO'">
-            <div class="absolute inset-0 bg-gradient-to-r from-brand-950 via-brand-900/90 to-transparent"></div>
-        </div>
-        
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <div class="max-w-3xl">
-                <!-- Live Status Tag -->
-                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 mb-6 shadow-sm">
-                    <span class="flex h-2 w-2 relative">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-                    </span>
-                    <span id="live-status-text" class="text-xs font-semibold tracking-wider">실시간 영업 확인 중</span>
-                </div>
-                
-                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black tracking-tight leading-tight mb-6">
-                    꿈을 실현하는<br class="hidden sm:inline"> 
-                    <span class="text-emerald-400">몰입과 치유의 공간</span>
-                </h1>
-                
-                <p class="text-lg sm:text-xl text-emerald-50/95 font-light leading-relaxed mb-10 max-w-2xl">
-                    답답한 도심 속에서 완벽한 프라이버시와 따뜻한 자연광을 동시에 누리세요. 친환경 원목 인테리어와 맞춤형 집중 부스가 여러분의 성취를 빈틈없이 서포트합니다.
-                </p>
-                
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#gallery" class="px-8 py-4 bg-brand-600 hover:bg-brand-700 text-white rounded-xl text-center font-bold shadow-lg hover:shadow-brand-700/30 hover:-translate-y-0.5 transition-all duration-300">
-                        <i class="fa-solid fa-compass mr-2"></i> 공간 둘러보기
-                    </a>
-                    <a href="#pricing" class="px-8 py-4 bg-white/10 hover:bg-white/20 text-white rounded-xl text-center font-bold border border-white/30 backdrop-blur-sm hover:-translate-y-0.5 transition-all duration-300">
-                        <i class="fa-solid fa-tags mr-2"></i> 이용 요금 확인
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Brand Key Highlights -->
-    <section id="about" class="py-16 bg-white border-b border-zinc-100">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <!-- Highlight 1 -->
-                <div class="flex items-start gap-4 p-6 rounded-2xl hover:bg-zinc-50 transition-colors">
-                    <div class="p-4 bg-brand-100 text-brand-700 rounded-2xl shadow-inner">
-                        <i class="fa-solid fa-tree text-2xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-zinc-950 mb-2">프리미엄 원목 마감</h3>
-                        <p class="text-zinc-500 leading-relaxed text-sm">친환경 원목과 차분한 화이트 벽돌 마감으로 눈과 마음에 완벽한 심리적 안정을 제공합니다.</p>
-                    </div>
-                </div>
-
-                <!-- Highlight 2 -->
-                <div class="flex items-start gap-4 p-6 rounded-2xl hover:bg-zinc-50 transition-colors">
-                    <div class="p-4 bg-brand-100 text-brand-700 rounded-2xl shadow-inner">
-                        <i class="fa-solid fa-chair text-2xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-zinc-950 mb-2">친환경 에코 체어</h3>
-                        <p class="text-zinc-500 leading-relaxed text-sm">장시간 학습 시 가해지는 허리 압박을 효과적으로 완화하는 최고급 그린 에코 체어를 전 좌석에 도입했습니다.</p>
-                    </div>
-                </div>
-
-                <!-- Highlight 3 -->
-                <div class="flex items-start gap-4 p-6 rounded-2xl hover:bg-zinc-50 transition-colors">
-                    <div class="p-4 bg-brand-100 text-brand-700 rounded-2xl shadow-inner">
-                        <i class="fa-solid fa-mug-hot text-2xl"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-zinc-950 mb-2">독립식 푸드 존</h3>
-                        <p class="text-zinc-500 leading-relaxed text-sm">답답한 도시 전경이 내려다보이는 창가 좌석과 안락한 스낵 휴게실을 분리 설계하여 기분 좋은 재충전이 가능합니다.</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="py-24 bg-zinc-50">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-16">
-                <span class="text-sm font-bold tracking-widest text-brand-700 uppercase">Interactive Spaces</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight mt-2 mb-4">공부 스타일을 배려한 공간 맞춤형 설계</h2>
-                <p class="text-zinc-500 leading-relaxed">자유로운 노트북 활용 및 고정석 위주의 포커스존까지 세심하게 기획된 이루다의 디테일을 사진으로 확인하세요.</p>
-            </div>
-
-            <!-- Gallery Filter Buttons -->
-            <div class="flex flex-wrap justify-center gap-2 mb-10">
-                <button onclick="filterGallery('all')" class="gallery-btn active px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-brand-700 text-white shadow-md">전체 공간</button>
-                <button onclick="filterGallery('study')" class="gallery-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-zinc-600 hover:bg-zinc-100">학습관 (포커스/오픈)</button>
-                <button onclick="filterGallery('group')" class="gallery-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-zinc-600 hover:bg-zinc-100">스터디룸</button>
-                <button onclick="filterGallery('relax')" class="gallery-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-zinc-600 hover:bg-zinc-100">휴식 & 푸드존</button>
-                <button onclick="filterGallery('facility')" class="gallery-btn px-5 py-2.5 rounded-full text-sm font-medium transition-all bg-white text-zinc-600 hover:bg-zinc-100">편의 시설</button>
-            </div>
-
-            <!-- Gallery Grid -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                
-                <!-- Card 1: Logo & Sign -->
-                <div class="gallery-item facility bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-zinc-100 group" onclick="openLightbox('image_47676c.jpg', '이루다 Study Studio 현관 로고', '벽돌 느낌의 따뜻한 조명과 화이트 마감 디자인으로 맞이하는 입구입니다.')">
-                    <div class="relative h-64 overflow-hidden bg-zinc-100">
-                        <img src="image_47676c.jpg" alt="이루다 입구 로고" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x300/15803d/ffffff?text=Logo'">
-                        <div class="absolute inset-0 bg-brand-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span class="bg-white/95 text-brand-800 text-xs font-bold py-2.5 px-4 rounded-xl shadow flex items-center gap-1.5"><i class="fa-solid fa-expand"></i> 크게 보기</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs font-bold text-brand-600">편의 시설</span>
-                        <h4 class="text-base font-bold text-zinc-950 mt-1 mb-1">메인 입구 로고 사인</h4>
-                        <p class="text-zinc-500 text-xs leading-relaxed line-clamp-2">클래식한 화이트 브릭 위에 배치된 감성 가득한 이루다 현판입니다.</p>
-                    </div>
-                </div>
-
-                <!-- Card 2: Lockers -->
-                <div class="gallery-item facility bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-zinc-100 group" onclick="openLightbox('image_476771.jpg', '개인 보관함 사물함 존', '철저한 보안과 넉넉한 공간을 제공하는 개별 락커 시스템입니다.')">
-                    <div class="relative h-64 overflow-hidden bg-zinc-100">
-                        <img src="image_476771.jpg" alt="락커룸" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x300/15803d/ffffff?text=Lockers'">
-                        <div class="absolute inset-0 bg-brand-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span class="bg-white/95 text-brand-800 text-xs font-bold py-2.5 px-4 rounded-xl shadow flex items-center gap-1.5"><i class="fa-solid fa-expand"></i> 크게 보기</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs font-bold text-brand-600">편의 시설</span>
-                        <h4 class="text-base font-bold text-zinc-950 mt-1 mb-1">전용 사물함 존</h4>
-                        <p class="text-zinc-500 text-xs leading-relaxed line-clamp-2">무거운 전공 서적이나 태블릿도 안심하고 두고 다닐 수 있는 최고급 락커룸입니다.</p>
-                    </div>
-                </div>
-
-                <!-- Card 3: Study Room Open -->
-                <div class="gallery-item study bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-zinc-100 group" onclick="openLightbox('image_47678a.jpg', '다인실 지정석 (오픈룸)', '답답하지 않고 적당한 긴장감을 주는 오픈형 다인석 존입니다.')">
-                    <div class="relative h-64 overflow-hidden bg-zinc-100">
-                        <img src="image_47678a.jpg" alt="오픈 독서실" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x300/15803d/ffffff?text=Open+Study+Room'">
-                        <div class="absolute inset-0 bg-brand-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span class="bg-white/95 text-brand-800 text-xs font-bold py-2.5 px-4 rounded-xl shadow flex items-center gap-1.5"><i class="fa-solid fa-expand"></i> 크게 보기</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs font-bold text-brand-600">학습관</span>
-                        <h4 class="text-base font-bold text-zinc-950 mt-1 mb-1">다인실 지정석 (오픈형)</h4>
-                        <p class="text-zinc-500 text-xs leading-relaxed line-clamp-2">밝은 우드 데크와 칸막이, 그리고 편안한 그린색 에코 시트가 조화로운 메인 존입니다.</p>
-                    </div>
-                </div>
-
-                <!-- Card 4: Focus Study Room -->
-                <div class="gallery-item study bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-zinc-100 group" onclick="openLightbox('image_47678e.jpg', '포커스 개인 1인실 존', '외부 환경과 시선을 완전히 극복해 극대화된 몰입감을 선사하는 스튜디오입니다.')">
-                    <div class="relative h-64 overflow-hidden bg-zinc-100">
-                        <img src="image_47678e.jpg" alt="포커스 존" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x300/15803d/ffffff?text=Focus+Study+Room'">
-                        <div class="absolute inset-0 bg-brand-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span class="bg-white/95 text-brand-800 text-xs font-bold py-2.5 px-4 rounded-xl shadow flex items-center gap-1.5"><i class="fa-solid fa-expand"></i> 크게 보기</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs font-bold text-brand-600">학습관</span>
-                        <h4 class="text-base font-bold text-zinc-950 mt-1 mb-1">1인실 전용 포커스 존</h4>
-                        <p class="text-zinc-500 text-xs leading-relaxed line-clamp-2">정면 화이트브릭 로고 사인과 정갈하게 정렬된 양방향 독서 부스가 최고의 몰입감을 선물합니다.</p>
-                    </div>
-                </div>
-
-                <!-- Card 5: Café Lounge -->
-                <div class="gallery-item relax bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-zinc-100 group" onclick="openLightbox('image_4767a7.jpg', '카페형 개방석 & 스터디 라운지', '따뜻한 야외 채광을 맞으며 노트북이나 독서를 병행하는 개방공간입니다.')">
-                    <div class="relative h-64 overflow-hidden bg-zinc-100">
-                        <img src="image_4767a7.jpg" alt="카페형 스터디라운지" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x300/15803d/ffffff?text=Cafe+Lounge'">
-                        <div class="absolute inset-0 bg-brand-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span class="bg-white/95 text-brand-800 text-xs font-bold py-2.5 px-4 rounded-xl shadow flex items-center gap-1.5"><i class="fa-solid fa-expand"></i> 크게 보기</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs font-bold text-brand-600">휴식 & 푸드존</span>
-                        <h4 class="text-base font-bold text-zinc-950 mt-1 mb-1">카페형 창가 스터디 데스크</h4>
-                        <p class="text-zinc-500 text-xs leading-relaxed line-clamp-2">막힌 공간을 잠시 벗어나 도심 뷰를 관람하며 커피 한 잔과 함께 학습 강도를 유지할 수 있습니다.</p>
-                    </div>
-                </div>
-
-                <!-- Card 6: Group Study -->
-                <div class="gallery-item group bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-zinc-100 group" onclick="openLightbox('image_4767ac.jpg', '그룹 스터디 & 미팅룸', '대형 디스플레이와 보드가 구비되어 있어 토론식 수업 및 팀플에 최적화된 회의실입니다.')">
-                    <div class="relative h-64 overflow-hidden bg-zinc-100">
-                        <img src="image_4767ac.jpg" alt="그룹 회의실" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x300/15803d/ffffff?text=Group+Room'">
-                        <div class="absolute inset-0 bg-brand-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span class="bg-white/95 text-brand-800 text-xs font-bold py-2.5 px-4 rounded-xl shadow flex items-center gap-1.5"><i class="fa-solid fa-expand"></i> 크게 보기</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs font-bold text-brand-600">스터디룸</span>
-                        <h4 class="text-base font-bold text-zinc-950 mt-1 mb-1">그룹 미팅 & 스터디룸</h4>
-                        <p class="text-zinc-500 text-xs leading-relaxed line-clamp-2">은은한 모던 조명과 전용 모니터, 화이트보드로 완비된 고효율 그룹형 공간입니다.</p>
-                    </div>
-                </div>
-
-                <!-- Card 7: Food Zone Table -->
-                <div class="gallery-item relax bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-zinc-100 group" onclick="openLightbox('image_4767af.jpg', '푸드존 내부 원목 휴게공간', '간단한 음료와 간식을 조용히 즐길 수 있도록 완벽 차단된 푸드 존 전용 테이블입니다.')">
-                    <div class="relative h-64 overflow-hidden bg-zinc-100">
-                        <img src="image_4767af.jpg" alt="푸드존 좌석" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x300/15803d/ffffff?text=Food+Zone'">
-                        <div class="absolute inset-0 bg-brand-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span class="bg-white/95 text-brand-800 text-xs font-bold py-2.5 px-4 rounded-xl shadow flex items-center gap-1.5"><i class="fa-solid fa-expand"></i> 크게 보기</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs font-bold text-brand-600">휴식 & 푸드존</span>
-                        <h4 class="text-base font-bold text-zinc-950 mt-1 mb-1">Enjoy & Relax 푸드 다이닝</h4>
-                        <p class="text-zinc-500 text-xs leading-relaxed line-clamp-2">은은한 펜던트 조명 아래 원목 월과 미니 우드 테이블이 세련된 카페테리아를 연출합니다.</p>
-                    </div>
-                </div>
-
-                <!-- Card 8: Food Zone Entrance -->
-                <div class="gallery-item relax bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 border border-zinc-100 group" onclick="openLightbox('image_4767c9.jpg', '푸드 존 입구 및 스낵 코너', '전자레인지와 간이 충전 시스템, 멋진 도심 경관이 있는 쾌적한 쉼터입니다.')">
-                    <div class="relative h-64 overflow-hidden bg-zinc-100">
-                        <img src="image_4767c9.jpg" alt="푸드존 도어 및 장비" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" onerror="this.src='https://placehold.co/400x300/15803d/ffffff?text=Food+Zone+Gate'">
-                        <div class="absolute inset-0 bg-brand-900/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
-                            <span class="bg-white/95 text-brand-800 text-xs font-bold py-2.5 px-4 rounded-xl shadow flex items-center gap-1.5"><i class="fa-solid fa-expand"></i> 크게 보기</span>
-                        </div>
-                    </div>
-                    <div class="p-5">
-                        <span class="text-xs font-bold text-brand-600">휴식 & 푸드존</span>
-                        <h4 class="text-base font-bold text-zinc-950 mt-1 mb-1">푸드 존 게이트 & 리프레시바</h4>
-                        <p class="text-zinc-500 text-xs leading-relaxed line-clamp-2">간단하게 즉석 조리를 돕는 깨끗한 전자레인지 공간과 넓은 창을 마주하는 기분 전환실입니다.</p>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Pricing Section -->
-    <section id="pricing" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <span class="text-sm font-bold tracking-widest text-brand-700 uppercase">Transparent Pricing</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight mt-2 mb-4">학습 목표에 맞는 합리적 정액 이용 플랜</h2>
-                <p class="text-zinc-500 leading-relaxed">자신의 목표 계획 기간에 따라 다인실 오픈룸 및 완벽 집중형 1인실 전용 요금을 투명하게 설계했습니다.</p>
-            </div>
-
-            <!-- Price Table Search & Interactive Controls -->
-            <div class="max-w-xl mx-auto mb-10 flex flex-col sm:flex-row gap-3">
-                <div class="relative flex-grow">
-                    <span class="absolute inset-y-0 left-0 flex items-center pl-4 text-zinc-400">
-                        <i class="fa-solid fa-magnifying-glass"></i>
-                    </span>
-                    <input type="text" id="price-search" oninput="searchPricing()" placeholder="원하는 기간을 입력하세요 (예: 1개월, 3개월, 1일...)" class="w-full pl-11 pr-4 py-3.5 bg-zinc-50 hover:bg-zinc-100/70 focus:bg-white border-2 border-transparent focus:border-brand-600 rounded-2xl outline-none transition-all text-sm font-medium shadow-inner placeholder-zinc-400">
-                </div>
-                <button onclick="clearSearch()" class="px-5 py-3.5 bg-zinc-100 hover:bg-zinc-200 text-zinc-700 rounded-2xl font-bold text-sm transition-all flex items-center justify-center gap-1.5">
-                    필터 해제
-                </button>
-            </div>
-
-            <!-- Pricing Grid Layout -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch mb-12">
-                <!-- Open Study Room Column Card -->
-                <div class="bg-wood-50 rounded-3xl border-2 border-brand-100 p-8 flex flex-col shadow-sm hover:shadow-lg transition-all">
-                    <div class="mb-6">
-                        <span class="bg-brand-100 text-brand-800 text-xs font-bold px-3 py-1.5 rounded-full uppercase">Open Space</span>
-                        <h3 class="text-2xl font-extrabold text-zinc-950 mt-3 mb-2">다인실 지정석 (오픈룸)</h3>
-                        <p class="text-zinc-500 text-sm">타인의 학습 열기를 직간접적으로 교감하며 지나친 폐쇄감이 불편한 분들을 위한 베스트셀러 좌석입니다.</p>
-                    </div>
-                    <hr class="border-wood-200/60 mb-6">
-                    <ul class="space-y-4 text-sm font-semibold text-zinc-700 flex-grow mb-8" id="open-price-list">
-                        <!-- Items rendered dynamically below for advanced search, but server side rendered first -->
-                        <li class="price-item flex justify-between items-center py-2.5 border-b border-dashed border-wood-200" data-period="1일권 일일권 하루">
-                            <span class="text-zinc-500 font-medium">1일권</span>
-                            <span class="text-base text-zinc-950 font-black">10,000원</span>
-                        </li>
-                        <li class="price-item flex justify-between items-center py-2.5 border-b border-dashed border-wood-200" data-period="1주 7일 일주일">
-                            <span class="text-zinc-500 font-medium">1주일 (7일)</span>
-                            <span class="text-base text-brand-700 font-black">50,000원</span>
-                        </li>
-                        <li class="price-item flex justify-between items-center py-2.5 border-b border-dashed border-wood-200" data-period="2주 14일 이주일">
-                            <span class="text-zinc-500 font-medium">2주일 (14일)</span>
-                            <span class="text-base text-brand-700 font-black">80,000원</span>
-                        </li>
-                        <li class="price-item flex justify-between items-center py-2.5 border-b border-dashed border-wood-200" data-period="3주 21일 삼주일">
-                            <span class="text-zinc-500 font-medium">3주일 (21일)</span>
-                            <span class="text-base text-brand-700 font-black">110,000원</span>
-                        </li>
-                        <li class="price-item flex justify-between items-center py-2.5 border-b border-dashed border-wood-200" data-period="1개월 30일 한달">
-                            <span class="text-zinc-500 font-medium">1개월 (30일)</span>
-                            <span class="text-base text-brand-700 font-black">120,000원</span>
-                        </li>
-                        <li class="price-item flex justify-between items-center py-2.5 border-b border-dashed border-wood-200" data-period="3개월 90일 세달 석달">
-                            <span class="text-zinc-500 font-medium">3개월 (90일)</span>
-                            <span class="text-base text-brand-700 font-black">350,000원</span>
-                        </li>
-                        <li class="price-item flex justify-between items-center py-2.5" data-period="6개월 180일 반년 여섯달">
-                            <span class="text-zinc-500 font-medium">6개월 (180일)</span>
-                            <span class="text-base text-brand-700 font-black">680,000원</span>
-                        </li>
-                    </ul>
-                    <a href="#booking" class="w-full text-center py-3.5 bg-brand-700 hover:bg-brand-800 text-white font-bold rounded-2xl text-sm shadow-md transition-all">이 좌석으로 시작하기</a>
-                </div>
-
-                <!-- Focus 1-Person Room Column Card -->
-                <div class="bg-brand-900 text-white rounded-3xl p-8 flex flex-col shadow-xl ring-4 ring-brand-700/20 relative transform lg:-translate-y-2">
-                    <div class="absolute top-0 right-8 transform -translate-y-1/2 bg-amber-500 text-brand-950 font-black text-xs px-3.5 py-1.5 rounded-full shadow flex items-center gap-1">
-                        <i class="fa-solid fa-crown"></i> 가장 인기가 많아요
-                    </div>
-                    
-                    <div class="mb-6">
-                        <span class="bg-brand-800 text-brand-200 text-xs font-bold px-3 py-1.5 rounded-full uppercase">Private Focus</span>
-                        <h3 class="text-2xl font-extrabold text-white mt-3 mb-2">1인실 전용 학습관</h3>
-                        <p class="text-brand-100 text-sm">사선 각도 가림막 및 단독형 도어 설치로 주변 시각적 움직임을 100% 원격 차단하는 밀폐형 스터디 공간입니다.</p>
-                    </div>
-                    <hr class="border-brand-800 mb-6">
-                    <ul class="space-y-4 text-sm font-semibold text-brand-50 flex-grow mb-8" id="private-price-list">
-                        <li class="price-item flex justify-between items-center py-2.5 border-b border-dashed border-brand-800" data-period="1일권 일일권 하루">
-                            <span class="text-brand-300 font-medium">1일권</span>
-                            <span class="text-base text-white font-black">10,000원</span>
-                        </li>
-                        <li class="price-item flex justify-between items-center py-2.5 border-b border-dashed border-brand-800" data-period="1주 7일 일주일">
-                            <span class="text-brand-300 font-medium">1주일 (7일)</span>
-                            <span class="text-base text-emerald-300 font-black">50,000원</span>
-                        </li>
-                        <li class="price-item flex justify-between items-center py-2.5 border-b border-dashed border-brand-800" data-period="2주 14일 이주일">
-                            <span class="text-brand-300 font-medium">2주일 (14일)</span>
-                            <span class="text-base text-emerald-300 font-black">90,000원</span>
-                        </li>
-                        <li class="price-item flex justify-between items-center py-2.5 border-b border-dashed border-brand-800" data-period="3주 21일 삼주일">
-                            <span class="text-brand-300 font-medium">3주일 (21일)</span>
-                            <span class="text-base text-emerald-300 font-black">120,000원</span>
-                        </li>
-                        <li class="price-item flex justify-between items-center py-2.5 border-b border-dashed border-brand-800" data-period="1개월 30일 한달">
-                            <span class="text-brand-300 font-medium">1개월 (30일)</span>
-                            <span class="text-base text-emerald-300 font-black">150,000원</span>
-                        </li>
-                        <li class="price-item flex justify-between items-center py-2.5 border-b border-dashed border-brand-800" data-period="3개월 90일 세달 석달">
-                            <span class="text-brand-300 font-medium">3개월 (90일)</span>
-                            <span class="text-base text-emerald-300 font-black">440,000원</span>
-                        </li>
-                        <li class="price-item flex justify-between items-center py-2.5" data-period="6개월 180일 반년 여섯달">
-                            <span class="text-brand-300 font-medium">6개월 (180일)</span>
-                            <span class="text-base text-emerald-300 font-black">820,000원</span>
-                        </li>
-                    </ul>
-                    <a href="#booking" class="w-full text-center py-3.5 bg-emerald-500 hover:bg-emerald-600 text-brand-950 font-black rounded-2xl text-sm shadow-lg hover:shadow-emerald-500/20 transition-all">이 좌석으로 시작하기</a>
-                </div>
-
-                <!-- Study Room & Facilities Card -->
-                <div class="bg-zinc-50 rounded-3xl border border-zinc-200 p-8 flex flex-col shadow-sm hover:shadow-lg transition-all">
-                    <div class="mb-6">
-                        <span class="bg-zinc-200 text-zinc-800 text-xs font-bold px-3 py-1.5 rounded-full uppercase">Facilities Add-on</span>
-                        <h3 class="text-2xl font-extrabold text-zinc-950 mt-3 mb-2">공동 연구실 및 기타 시설</h3>
-                        <p class="text-zinc-500 text-sm">토론, 팀과제, 소그룹 집중 지도에 활용할 수 있는 회의실 공간 및 사물함 세부 조건입니다.</p>
-                    </div>
-                    <hr class="border-zinc-200 mb-6">
-                    <div class="space-y-6 flex-grow mb-8 text-sm">
-                        <div class="p-4 bg-white rounded-2xl border border-zinc-200/75">
-                            <div class="flex justify-between items-center mb-1.5">
-                                <span class="font-bold text-zinc-900">그룹 스터디룸 (시간당)</span>
-                                <span class="font-black text-brand-700 text-base">별도 문의</span>
-                            </div>
-                            <p class="text-zinc-400 text-xs">화이트보드, 대형 모니터 및 방음 인프라 무상 세팅 완료</p>
-                        </div>
-                        <div class="p-4 bg-white rounded-2xl border border-zinc-200/75">
-                            <div class="flex justify-between items-center mb-1.5">
-                                <span class="font-bold text-zinc-900">개인 사물함 (30일 기준)</span>
-                                <span class="font-black text-brand-700 text-base">회원권 포함</span>
-                            </div>
-                            <p class="text-zinc-400 text-xs">장기등록(1개월 이상) 회원에게 보관함 비밀락커 전면 무료 배정</p>
-                        </div>
-                        <div class="p-4 bg-white rounded-2xl border border-zinc-200/75">
-                            <div class="flex justify-between items-center mb-1.5">
-                                <span class="font-bold text-zinc-900">푸드 라운지 & 리프레시바</span>
-                                <span class="font-black text-brand-700 text-base">전체 무료</span>
-                            </div>
-                            <p class="text-zinc-400 text-xs">초고속 Wi-Fi, 무료 원두커피 서비스 상시 무료 개방</p>
-                        </div>
-                    </div>
-                    <!-- View original photo link for safety -->
-                    <button onclick="openOriginalPricingPhoto()" class="w-full text-center py-3.5 bg-zinc-200 hover:bg-zinc-300 text-zinc-800 font-bold rounded-2xl text-sm transition-all flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-image"></i> 원본 가격표 사진 보기
-                    </button>
-                </div>
-            </div>
-
-            <!-- Empty Search Notice -->
-            <div id="search-empty-state" class="hidden text-center py-12 bg-zinc-50 rounded-2xl border border-dashed border-zinc-300">
-                <i class="fa-solid fa-magnifying-glass-minus text-zinc-300 text-4xl mb-3"></i>
-                <h3 class="text-lg font-bold text-zinc-900">검색 조건에 매칭되는 요금제가 없습니다</h3>
-                <p class="text-zinc-400 text-sm mt-1">다른 키워드(예: 1개월, 1일 등)를 다시 입력해보세요.</p>
-            </div>
-        </div>
-    </section>
-
-    <!-- Booking & Inquiry Form Section -->
-    <section id="booking" class="py-24 bg-zinc-50 border-t border-b border-zinc-200">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6">
-            <div class="bg-white rounded-3xl p-8 sm:p-12 shadow-xl border border-zinc-100">
-                <div class="text-center max-w-lg mx-auto mb-10">
-                    <h2 class="text-3xl font-extrabold text-zinc-950 tracking-tight">상담 및 무료 체험권 예약</h2>
-                    <p class="text-zinc-400 text-sm mt-2">간단히 예약을 완료하시면 첫 방문에 어울리는 최적의 체험 좌석을 맞춤 설계하고 친절하게 가이드해 드립니다.</p>
-                </div>
-
-                <!-- Multi-step Mock Consultation Form -->
-                <form id="consultation-form" onsubmit="handleInquirySubmit(event)" class="space-y-6">
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-bold text-zinc-700 mb-2">이름 <span class="text-red-500">*</span></label>
-                            <input type="text" required placeholder="홍길동" class="w-full px-4 py-3 border border-zinc-200 rounded-xl outline-none focus:border-brand-600 transition-all text-sm font-medium">
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-zinc-700 mb-2">연락처 <span class="text-red-500">*</span></label>
-                            <input type="tel" required placeholder="010-0000-0000" class="w-full px-4 py-3 border border-zinc-200 rounded-xl outline-none focus:border-brand-600 transition-all text-sm font-medium">
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                        <div>
-                            <label class="block text-sm font-bold text-zinc-700 mb-2">관심 있는 좌석 종류</label>
-                            <select class="w-full px-4 py-3 border border-zinc-200 rounded-xl outline-none focus:border-brand-600 transition-all text-sm font-medium bg-white">
-                                <option value="open">다인실 지정석 (오픈룸)</option>
-                                <option value="private">1인실 전용관 (완전 독립형)</option>
-                                <option value="group">그룹 스터디룸 대여</option>
-                                <option value="undecided">아직 잘 모르겠어요 (방문 상담)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-sm font-bold text-zinc-700 mb-2">방문 희망 일자</label>
-                            <input type="date" class="w-full px-4 py-3 border border-zinc-200 rounded-xl outline-none focus:border-brand-600 transition-all text-sm font-medium">
-                        </div>
-                    </div>
-
-                    <div>
-                        <label class="block text-sm font-bold text-zinc-700 mb-2">문의 또는 요청 사항</label>
-                        <textarea rows="4" placeholder="체험권 신청 동기나 원하는 상세 운영 일정에 관해 자유롭게 작성해 주세요." class="w-full px-4 py-3 border border-zinc-200 rounded-xl outline-none focus:border-brand-600 transition-all text-sm font-medium resize-none"></textarea>
-                    </div>
-
-                    <div class="flex items-start gap-3 p-4 bg-zinc-50 rounded-2xl">
-                        <input type="checkbox" required id="privacy-agree" class="mt-1 accent-brand-700">
-                        <label for="privacy-agree" class="text-xs text-zinc-400 font-medium leading-relaxed">
-                            (필수) 개인정보 처리 방침에 동의합니다. 수집 목적은 예약 의사 확인 및 이용권 신청 수령 처리만을 목적으로 활용하며 타 용도로 일체 제공되지 않습니다.
-                        </label>
-                    </div>
-
-                    <button type="submit" class="w-full py-4 bg-brand-700 hover:bg-brand-800 text-white font-extrabold rounded-2xl shadow-lg shadow-brand-700/20 hover:shadow-brand-800/30 transition-all text-base flex items-center justify-center gap-2">
-                        <i class="fa-solid fa-paper-plane"></i> 예약 및 무료 체험권 상담 신청하기
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- Location Section (Map placeholder & Transport Guides) -->
-    <section id="location" class="py-24 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <!-- Location Info Column -->
-                <div>
-                    <span class="text-sm font-bold tracking-widest text-brand-700 uppercase">Location</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight mt-2 mb-6">오직 공부에만 몰입할 수 있는 완벽한 위치</h2>
-                    
-                    <div class="space-y-6">
-                        <div class="flex items-start gap-4">
-                            <div class="text-brand-700 p-2.5 bg-brand-50 rounded-xl">
-                                <i class="fa-solid fa-location-dot text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-zinc-900 mb-1">상세 주소</h4>
-                                <p class="text-zinc-500 text-sm">서울특별시 서초구 이루다 빌딩 (정밀 위치는 예약 확정 시 개별 안내)</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="text-brand-700 p-2.5 bg-brand-50 rounded-xl">
-                                <i class="fa-solid fa-subway text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-zinc-900 mb-1">대중교통 안내 (지하철)</h4>
-                                <p class="text-zinc-500 text-sm">서초역 3번 출구 도보 5분 이내 / 교대역 1번 출구 도보 8분 이내</p>
-                            </div>
-                        </div>
-
-                        <div class="flex items-start gap-4">
-                            <div class="text-brand-700 p-2.5 bg-brand-50 rounded-xl">
-                                <i class="fa-solid fa-square-parking text-xl"></i>
-                            </div>
-                            <div>
-                                <h4 class="font-bold text-zinc-900 mb-1">주차 및 편의 혜택</h4>
-                                <p class="text-zinc-500 text-sm">건물 내 무료 기계식 주차 가능 (장기 등록 회원 전용 혜택 제공)</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Mock Interactive Map Block with beautiful visuals -->
-                <div class="relative bg-zinc-100 h-[380px] rounded-3xl overflow-hidden shadow-md border border-zinc-200 flex flex-col justify-between p-6">
-                    <!-- Custom simulated map details background vector -->
-                    <div class="absolute inset-0 z-0 bg-cover bg-center filter opacity-80" style="background-image: url('https://placehold.co/600x400/e6d5c3/14532d?text=IRUDA+STUDIO+MAP');"></div>
-                    
-                    <!-- Overlay to look like a premium map UI -->
-                    <div class="absolute inset-0 bg-brand-950/20 z-0"></div>
-                    
-                    <!-- Top Map floating banner -->
-                    <div class="relative z-10 bg-white/95 backdrop-blur-md p-4 rounded-2xl shadow-lg border border-zinc-100 flex items-center justify-between">
-                        <div class="flex items-center gap-3">
-                            <div class="h-10 w-10 bg-brand-700 text-white flex items-center justify-center rounded-xl text-lg font-bold">이</div>
-                            <div>
-                                <h5 class="text-sm font-bold text-zinc-950">이루다 독서실 서초점</h5>
-                                <p class="text-xs text-zinc-500">서울 서초구 이루다 빌딩</p>
-                            </div>
-                        </div>
-                        <a href="https://map.kakao.com" target="_blank" class="px-3.5 py-2 bg-brand-700 hover:bg-brand-800 text-white text-xs font-bold rounded-xl transition-all shadow-md">길찾기</a>
-                    </div>
-
-                    <!-- Map Pin Locator Simulator -->
-                    <div class="relative z-10 mx-auto my-auto flex flex-col items-center">
-                        <div class="h-14 w-14 bg-brand-700 border-4 border-white text-white rounded-full flex items-center justify-center shadow-2xl animate-bounce">
-                            <i class="fa-solid fa-location-dot text-2xl"></i>
-                        </div>
-                        <div class="bg-zinc-950 text-white text-xs px-3 py-1.5 rounded-lg mt-2 font-bold shadow-md">이루다 Study Studio</div>
-                    </div>
-
-                    <div class="relative z-10"></div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-zinc-950 text-zinc-400 py-16 border-t border-zinc-900">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-                
-                <!-- Footer Identity -->
-                <div class="md:col-span-2">
-                    <div class="flex items-center gap-3 mb-4">
-                        <img src="image_47676c.jpg" alt="이루다 로고" class="h-10 w-10 rounded-lg object-cover brightness-95" onerror="this.src='https://placehold.co/100x100/15803d/ffffff?text=IRUDA'">
-                        <div>
-                            <span class="text-lg font-bold text-white block">이루다 독서실</span>
-                            <span class="text-xxs text-zinc-500 font-semibold uppercase tracking-wider block -mt-1">Study Studio</span>
-                        </div>
-                    </div>
-                    <p class="text-sm leading-relaxed text-zinc-500 max-w-sm mb-6">
-                        이루다 독서실은 완벽한 침묵과 치유의 경험을 최우선으로 생각하는 친환경 스터디 스튜디오 브랜드입니다. 여러분의 노력과 열망이 결실을 맺을 때까지 최고의 서포터가 되어드리겠습니다.
-                    </p>
-                    <div class="flex space-x-4">
-                        <a href="https://instagram.com" class="h-10 w-10 bg-zinc-900 hover:bg-brand-700 text-white rounded-full flex items-center justify-center transition-colors shadow-sm"><i class="fa-brands fa-instagram text-base"></i></a>
-                        <a href="https://blog.naver.com" class="h-10 w-10 bg-zinc-900 hover:bg-brand-700 text-white rounded-full flex items-center justify-center transition-colors shadow-sm"><i class="fa-solid fa-n text-xs"></i></a>
-                        <a href="https://youtube.com" class="h-10 w-10 bg-zinc-900 hover:bg-brand-700 text-white rounded-full flex items-center justify-center transition-colors shadow-sm"><i class="fa-brands fa-youtube text-base"></i></a>
-                    </div>
-                </div>
-
-                <!-- Quick Navigation Links -->
-                <div>
-                    <h4 class="text-white text-sm font-bold tracking-wider uppercase mb-4">바로가기</h4>
-                    <ul class="space-y-3 text-sm">
-                        <li><a href="#about" class="hover:text-white transition-colors">독서실 소개</a></li>
-                        <li><a href="#gallery" class="hover:text-white transition-colors">공간 및 인테리어</a></li>
-                        <li><a href="#pricing" class="hover:text-white transition-colors">이용 요금표</a></li>
-                        <li><a href="#booking" class="hover:text-white transition-colors">무료 체험 신청</a></li>
-                        <li><a href="#location" class="hover:text-white transition-colors">오시는 길</a></li>
-                    </ul>
-                </div>
-
-                <!-- Store Operational Contacts -->
-                <div>
-                    <h4 class="text-white text-sm font-bold tracking-wider uppercase mb-4">운영 및 문의</h4>
-                    <ul class="space-y-3 text-sm text-zinc-500">
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-phone text-brand-600 text-xs"></i> <span class="text-zinc-300 font-bold">대표 번호: 02-XXX-XXXX</span></li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-clock text-brand-600 text-xs"></i> <span>운영시간: 매일 08:00 - 익일 02:00</span></li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-envelope text-brand-600 text-xs"></i> <span>이메일: iruda_study@naver.com</span></li>
-                        <li class="flex items-center gap-2"><i class="fa-solid fa-file-invoice text-brand-600 text-xs"></i> <span>사업자 등록번호: XXX-XX-XXXXX</span></li>
-                    </ul>
-                </div>
-            </div>
-
-            <hr class="border-zinc-900 my-8">
-
-            <div class="flex flex-col sm:flex-row justify-between items-center gap-4 text-xs text-zinc-600">
-                <p>© 2026 이루다 Study Studio. All rights reserved.</p>
-                <div class="flex space-x-6">
-                    <a href="#" class="hover:text-zinc-400">개인정보 처리방침</a>
-                    <a href="#" class="hover:text-zinc-400">이용 약관</a>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Lightbox Modal Dialog Component -->
-    <div id="lightbox" class="fixed inset-0 bg-black/95 z-50 hidden flex-col items-center justify-center p-4 transition-all duration-300">
-        <!-- Close Button -->
-        <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white bg-white/10 hover:bg-white/20 hover:scale-105 h-12 w-12 rounded-full flex items-center justify-center transition-all text-xl">
-            <i class="fa-solid fa-xmark"></i>
-        </button>
-        
-        <!-- Lightbox Content Wrapper -->
-        <div class="max-w-4xl w-full flex flex-col md:flex-row gap-6 bg-zinc-950 border border-white/10 p-5 rounded-3xl shadow-2xl relative">
-            
-            <!-- Image Area -->
-            <div class="w-full md:w-2/3 h-[300px] sm:h-[450px] rounded-2xl overflow-hidden bg-zinc-900">
-                <img id="lightbox-image" src="" alt="확대 보기" class="w-full h-full object-contain">
-            </div>
-
-            <!-- Description Text Column -->
-            <div class="w-full md:w-1/3 flex flex-col justify-center text-white p-2">
-                <span id="lightbox-badge" class="bg-brand-700/80 text-white text-[11px] font-bold px-2.5 py-1 rounded-full uppercase self-start mb-3">Space Detail</span>
-                <h3 id="lightbox-title" class="text-2xl font-black mb-3 text-emerald-400">공간 타이틀</h3>
-                <p id="lightbox-desc" class="text-sm text-zinc-400 leading-relaxed">상세 묘사 텍스트 영역입니다.</p>
-                
-                <div class="mt-8 flex gap-3">
-                    <a href="#booking" onclick="closeLightbox()" class="px-5 py-3 bg-brand-700 hover:bg-brand-800 text-white font-bold rounded-xl text-xs flex items-center gap-1.5 shadow-md">
-                        <i class="fa-solid fa-calendar-check"></i> 이 공간 문의하기
-                    </a>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Toast Message Alert System (Custom replacement for alert) -->
-    <div id="toast" class="fixed bottom-8 right-8 z-50 bg-brand-900 text-white px-6 py-4 rounded-2xl shadow-2xl border border-brand-700 hidden transform translate-y-10 opacity-0 transition-all duration-300 flex items-center gap-3">
-        <div class="h-10 w-10 bg-emerald-500 rounded-xl flex items-center justify-center text-zinc-950 text-lg">
-            <i class="fa-solid fa-check-double"></i>
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-stone-200 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      <a href="#" class="flex items-center space-x-3 group">
+        <div class="w-12 h-12 bg-[#2D5A27] rounded-xl flex items-center justify-center text-white font-extrabold text-lg shadow-md transition-transform group-hover:scale-105">
+          이루다
         </div>
         <div>
-            <h4 class="font-extrabold text-sm text-white" id="toast-title">신청 완료!</h4>
-            <p class="text-xs text-brand-200 mt-0.5" id="toast-body">담당자가 확인하는 대로 개별 전화를 드립니다.</p>
+          <span class="text-xl font-black text-stone-900 tracking-tight block">이루다 스터디 스튜디오</span>
+          <span class="text-xs text-emerald-800 font-bold block -mt-1 tracking-wider">STUDY STUDIO</span>
         </div>
+      </a>
+      
+      <nav class="hidden md:flex space-x-8 font-semibold text-stone-600">
+        <a href="#about" class="hover:text-[#2D5A27] transition-colors">이루다 소개</a>
+        <a href="#spaces" class="hover:text-[#2D5A27] transition-colors">공간 안내</a>
+        <a href="#pricing" class="hover:text-[#2D5A27] transition-colors">이용 요금</a>
+        <a href="#location" class="hover:text-[#2D5A27] transition-colors">찾아오시는 길</a>
+      </nav>
+
+      <div>
+        <a href="tel:042-933-0909" class="bg-[#2D5A27] hover:bg-[#1E3F1A] text-white px-5 py-2.5 rounded-xl text-sm font-bold transition-all shadow-md flex items-center space-x-2">
+          <i class="fa-solid fa-phone text-xs text-amber-300"></i>
+          <span>실시간 이용 문의</span>
+        </a>
+      </div>
     </div>
+  </header>
 
-    <!-- Interactive Scripting Block -->
-    <script>
+  <section class="relative bg-gradient-to-br from-[#1E3F1A] via-[#2D5A27] to-[#3a6e34] text-white py-24 lg:py-32 overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#fff_1px,transparent_1px)] [background-size:24px_24px]"></div>
+    <div class="absolute -top-40 -right-40 w-[500px] h-[500px] bg-emerald-500 rounded-full blur-3xl opacity-20"></div>
+    <div class="absolute -bottom-40 -left-40 w-[500px] h-[500px] bg-lime-400 rounded-full blur-3xl opacity-20"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center space-x-2 bg-emerald-900/60 text-emerald-300 font-bold px-4 py-1.5 rounded-full text-xs tracking-wider uppercase border border-emerald-700/50">
+            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+            <span>Premium Study & Focus Space</span>
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+            당신의 빛나는 다짐이<br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-300 to-emerald-200">완벽히 이루어지는 곳</span>
+          </h1>
+          <p class="text-lg text-emerald-100/90 max-w-2xl leading-relaxed font-light">
+            아름다운 친환경 화이트 브릭과 천연 원목, 몰입을 자아내는 차분한 디자인 조명이 조화를 이루는 프리미엄 독서실 이루다입니다. 쾌적한 안심 살균 존에서 온전히 나만의 성장에 집중해보세요.
+          </p>
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a href="#pricing" class="bg-amber-400 hover:bg-amber-500 text-stone-950 font-bold px-6 py-3.5 rounded-xl transition-all shadow-lg shadow-amber-400/10 flex items-center space-x-2">
+              <i class="fa-solid fa-receipt"></i>
+              <span>요금표 바로 보기</span>
+            </a>
+            <a href="#spaces" class="bg-white/10 hover:bg-white/20 text-white font-semibold px-6 py-3.5 rounded-xl border border-white/20 transition-all flex items-center space-x-2">
+              <span>내부 가상 투어</span>
+              <i class="fa-solid fa-arrow-down text-emerald-300"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5 relative">
+          <div class="absolute inset-0 bg-gradient-to-tr from-emerald-500 to-amber-500 rounded-3xl rotate-3 scale-105 opacity-15 blur-2xl"></div>
+          <div class="relative overflow-hidden rounded-3xl border-4 border-white/20 shadow-2xl">
+            <img src="https://media.discordapp.net/attachments/1058202738749624472/1511409958590349462/KakaoTalk_20210313_191720001.png?ex=6a210276&is=6a1fb0f6&hm=7d62287101d29124400e0295f5e86c0847a4b6b0fb9acefa6267838ae1669421&=&format=webp&quality=lossless&width=828&height=1103" alt="이루다 스튜디오 현관 전경" class="w-full h-[400px] object-cover hover:scale-105 transition-transform duration-700">
+            <div class="absolute bottom-0 inset-x-0 bg-gradient-to-t from-stone-950/90 via-stone-950/40 to-transparent p-6 text-white">
+              <p class="font-bold text-lg flex items-center space-x-1.5">
+                <i class="fa-solid fa-cross text-stone-300"></i>
+                <span>이루다 Study Studio</span>
+              </p>
+              <p class="text-xs text-stone-300 mt-1">친환경 화이트 브릭 월과 편안한 크로스 가구 디자인</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <span class="text-[#2D5A27] font-extrabold text-sm tracking-widest uppercase block">Why Iruda Study Studio</span>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-stone-950 leading-tight">
+            피로감을 최소화하는<br><span class="text-[#2D5A27]">학습 친화적 하이엔드 공간 설계</span>
+          </h2>
+          <div class="h-1.5 w-24 bg-[#2D5A27] rounded-full"></div>
+          <p class="text-stone-600 leading-relaxed text-base">
+            장시간 학습하는 학생과 직장인들이 겪는 신체적 피로와 두뇌 피로를 낮추기 위해, 공간의 레이아웃부터 의자 하나까지 섬세하게 신경 썼습니다. 은은하고 눈부심이 없는 주광색 간접등과 친환경 마감재, 그리고 자연 채광이 조화롭게 스며드는 아늑한 조망권을 제공합니다.
+          </p>
+          <div class="grid grid-cols-2 gap-6 pt-4">
+            <div class="border-l-4 border-emerald-600 pl-4 space-y-1">
+              <p class="font-extrabold text-stone-900 text-lg">Sidiz Ergonomic Chair</p>
+              <p class="text-stone-500 text-xs">전 좌석 인체공학적 시디즈 허리 보호 의자 완비</p>
+            </div>
+            <div class="border-l-4 border-emerald-600 pl-4 space-y-1">
+              <p class="font-extrabold text-stone-900 text-lg">System Air Conditioning</p>
+              <p class="text-stone-500 text-xs">사계절 내내 유해물질 걱정 없는 쾌적 환기 시스템</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-5">
+          <div class="relative rounded-3xl overflow-hidden shadow-xl border border-stone-200">
+            <img src="https://media.discordapp.net/attachments/1058202738749624472/1511409960003698749/KakaoTalk_20210313_191720001_11.png?ex=6a210277&is=6a1fb0f7&hm=ba9f16b331676d78f988f2c9a4549f1c4f7f0f12a31f923a59239eda79b8e657&=&format=webp&quality=lossless&width=828&height=1103" alt="카페형 개방석 이미지" class="w-full h-[450px] object-cover">
+            <div class="absolute inset-0 bg-stone-950/20"></div>
+            <div class="absolute bottom-6 left-6 right-6 text-white">
+              <span class="inline-block bg-white/20 backdrop-blur-md text-white text-[10px] font-bold px-2.5 py-1 rounded-full mb-2">프리미엄 라운지</span>
+              <p class="font-bold text-lg">자유롭고 넓은 카페형 개방 스터디 존</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="spaces" class="py-20 bg-stone-100">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-16">
+        <h2 class="text-3xl font-extrabold text-stone-950 tracking-tight sm:text-4xl">
+          목적에 따라 구분된 고품격 몰입 공간
+        </h2>
+        <div class="h-1 w-20 bg-[#2D5A27] mx-auto rounded-full"></div>
+        <p class="text-stone-600 text-sm sm:text-base">
+          최상의 효율을 낼 수 있도록 마련된 각 공간들을 소개해 드립니다. 사진을 누르시면 큰 화면으로 세부 마감과 구조를 확인하실 수 있습니다.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         
-        // Active Real-Time Operational Hours Check
-        function updateOpeningStatus() {
-            const now = new Date();
-            const hours = now.getHours();
+        <div class="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-stone-200/60 group cursor-pointer" onclick="openLightbox('https://media.discordapp.net/attachments/1058202738749624472/1511409958942539796/KakaoTalk_20210313_191720001_03.png?ex=6a210276&is=6a1fb0f6&hm=1228f6720ebede30c0466645bae234592a3282449465c4bc33df36948774ad5f&=&format=webp&quality=lossless&width=828&height=1103', '집중 전용 완벽 1인 독립실', '방해 소음을 차단하고 오직 나만의 학습 템포를 지켜주는 최고급 1인 단독 독립실 구조입니다. 개인 수납함이 내장되어 있습니다.')">
+          <div class="h-64 w-full overflow-hidden bg-stone-200 relative">
+            <img src="https://media.discordapp.net/attachments/1058202738749624472/1511409958942539796/KakaoTalk_20210313_191720001_03.png?ex=6a210276&is=6a1fb0f6&hm=1228f6720ebede30c0466645bae234592a3282449465c4bc33df36948774ad5f&=&format=webp&quality=lossless&width=828&height=1103" alt="1인 독립실" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 right-4 bg-[#2D5A27] text-white text-xs font-bold px-3 py-1 rounded-full">독립 밀폐형</div>
+          </div>
+          <div class="p-6 space-y-2">
+            <h3 class="font-extrabold text-stone-900 text-lg group-hover:text-[#2D5A27] transition-colors">프리미엄 1인실 (독립형)</h3>
+            <p class="text-stone-500 text-xs sm:text-sm leading-relaxed">
+              완벽한 프라이버시가 제공되는 단독 독립 실로, 최고 수준의 수능/고시생 및 고도의 몰입이 필요한 분들께 적극 권장합니다.
+            </p>
+            <div class="pt-3 border-t border-stone-100 flex justify-between items-center text-xs text-[#2D5A27] font-bold">
+              <span>수납함 내장 / 개별 환기 락커</span>
+              <span class="flex items-center space-x-1"><span>자세히 보기</span> <i class="fa-solid fa-magnifying-glass-plus"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-stone-200/60 group cursor-pointer" onclick="openLightbox('https://media.discordapp.net/attachments/1058202738749624472/1511409959332745358/KakaoTalk_20210313_191720001_04.png?ex=6a210276&is=6a1fb0f6&hm=2af4552c8c40802a5f90d9ed4d650a47714d8a9d16dd437896e46418b3d01898&=&format=webp&quality=lossless&width=828&height=1103', '다인실 지정형 학습실', '넓고 쾌적한 데스크 간격과 높은 파티션 설계로 적절한 경쟁의식과 편안한 프라이버시를 동시에 제공하는 지정석 공간입니다.')">
+          <div class="h-64 w-full overflow-hidden bg-stone-200 relative">
+            <img src="https://media.discordapp.net/attachments/1058202738749624472/1511409959332745358/KakaoTalk_20210313_191720001_04.png?ex=6a210276&is=6a1fb0f6&hm=2af4552c8c40802a5f90d9ed4d650a47714d8a9d16dd437896e46418b3d01898&=&format=webp&quality=lossless&width=828&height=1103" alt="다인 지정석 스터디존" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 right-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full">지정석 오픈룸</div>
+          </div>
+          <div class="p-6 space-y-2">
+            <h3 class="font-extrabold text-stone-900 text-lg group-hover:text-[#2D5A27] transition-colors">다인실 지정석 (오픈룸)</h3>
+            <p class="text-stone-500 text-xs sm:text-sm leading-relaxed">
+              서로 열정 가득한 동료들의 면학 열기를 가까이에서 느끼면서 집중력의 페이스를 유지할 수 있는 인기 지정석 설계입니다.
+            </p>
+            <div class="pt-3 border-t border-stone-100 flex justify-between items-center text-xs text-[#2D5A27] font-bold">
+              <span>장시간 집중을 돕는 눈 보호 스위치</span>
+              <span class="flex items-center space-x-1"><span>자세히 보기</span> <i class="fa-solid fa-magnifying-glass-plus"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-stone-200/60 group cursor-pointer" onclick="openLightbox('https://media.discordapp.net/attachments/1058202738749624472/1511409959664091147/KakaoTalk_20210313_191720001_05.png?ex=6a210277&is=6a1fb0f7&hm=56ab6310d5a23de979d4397a89da7f836c63a34f9c8e047e487c87f173eacd6d&=&format=webp&quality=lossless&width=828&height=1103', '다인 지정식 스터디 복도 측면', '밝은 파스텔톤 우드와 개인 수납 락커들이 깔끔하게 매칭된 최첨단 면학 보존 구역입니다.')">
+          <div class="h-64 w-full overflow-hidden bg-stone-200 relative">
+            <img src="https://media.discordapp.net/attachments/1058202738749624472/1511409959664091147/KakaoTalk_20210313_191720001_05.png?ex=6a210277&is=6a1fb0f7&hm=56ab6310d5a23de979d4397a89da7f836c63a34f9c8e047e487c87f173eacd6d&=&format=webp&quality=lossless&width=828&height=1103" alt="다인실 가구 구조" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 right-4 bg-emerald-600 text-white text-xs font-bold px-3 py-1 rounded-full">안심 수납존</div>
+          </div>
+          <div class="p-6 space-y-2">
+            <h3 class="font-extrabold text-stone-900 text-lg group-hover:text-[#2D5A27] transition-colors">다인실 파티션 좌석</h3>
+            <p class="text-stone-500 text-xs sm:text-sm leading-relaxed">
+              독자적인 개인 와이드 캐비닛 및 개인 보관 공간이 효율적으로 연계되어 무거운 가방과 교재를 편리하게 상시 보관할 수 있습니다.
+            </p>
+            <div class="pt-3 border-t border-stone-100 flex justify-between items-center text-xs text-[#2D5A27] font-bold">
+              <span>수납 캐비닛 무소음 연동 락</span>
+              <span class="flex items-center space-x-1"><span>자세히 보기</span> <i class="fa-solid fa-magnifying-glass-plus"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-stone-200/60 group cursor-pointer" onclick="openLightbox('https://media.discordapp.net/attachments/1058202738749624472/1511409960003698749/KakaoTalk_20210313_191720001_11.png?ex=6a210277&is=6a1fb0f7&hm=ba9f16b331676d78f988f2c9a4549f1c4f7f0f12a31f923a59239eda79b8e657&=&format=webp&quality=lossless&width=828&height=1103', '고품격 창가 테라스 스터디 라운지', '탁 트인 유리 전망 창과 아름다운 우드 테이블, 잔잔한 조명들이 연동되어 도서관이나 북카페 같은 리프레쉬 무드를 제공합니다.')">
+          <div class="h-64 w-full overflow-hidden bg-stone-200 relative">
+            <img src="https://media.discordapp.net/attachments/1058202738749624472/1511409960003698749/KakaoTalk_20210313_191720001_11.png?ex=6a210277&is=6a1fb0f7&hm=ba9f16b331676d78f988f2c9a4549f1c4f7f0f12a31f923a59239eda79b8e657&=&format=webp&quality=lossless&width=828&height=1103" alt="카페형 개방석 및 뷰 라운지" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 right-4 bg-amber-500 text-stone-950 text-xs font-bold px-3 py-1 rounded-full">리프레시 라운지</div>
+          </div>
+          <div class="p-6 space-y-2">
+            <h3 class="font-extrabold text-stone-900 text-lg group-hover:text-[#2D5A27] transition-colors">카페형 개방석 & 라운지</h3>
+            <p class="text-stone-500 text-xs sm:text-sm leading-relaxed">
+              지정석 학습 도중 분위기 환기가 필요할 때, 따뜻한 차 한 잔과 노트북 타이핑이 가벼운 수준으로 편하게 허용되는 스터디 라운지 공간입니다.
+            </p>
+            <div class="pt-3 border-t border-stone-100 flex justify-between items-center text-xs text-[#2D5A27] font-bold">
+              <span>창가 펜던트 독립 조명 탑재</span>
+              <span class="flex items-center space-x-1"><span>자세히 보기</span> <i class="fa-solid fa-magnifying-glass-plus"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-stone-200/60 group cursor-pointer" onclick="openLightbox('https://media.discordapp.net/attachments/1058202738749624472/1511409960364544201/KakaoTalk_20210313_191720001_12.png?ex=6a210277&is=6a1fb0f7&hm=75344fc0f9a4872b9710db5e0252fc39d73e1469d494f5e39f927ad8efb0178a&=&format=webp&quality=lossless&width=828&height=1103', '미팅룸 및 세미나 회의공간', '대형 TV 브래킷 모니터와 화이트 보드가 지원되어 과외 지도, 발표 준비, 조별 프로젝트 및 심층 토론이 가능한 공간입니다.')">
+          <div class="h-64 w-full overflow-hidden bg-stone-200 relative">
+            <img src="https://media.discordapp.net/attachments/1058202738749624472/1511409960364544201/KakaoTalk_20210313_191720001_12.png?ex=6a210277&is=6a1fb0f7&hm=75344fc0f9a4872b9710db5e0252fc39d73e1469d494f5e39f927ad8efb0178a&=&format=webp&quality=lossless&width=828&height=1103" alt="미팅룸 및 스터디 스페이스" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 right-4 bg-[#2D5A27] text-white text-xs font-bold px-3 py-1 rounded-full">그룹 스터디룸</div>
+          </div>
+          <div class="p-6 space-y-2">
+            <h3 class="font-extrabold text-stone-900 text-lg group-hover:text-[#2D5A27] transition-colors">미팅룸 (Group Study Room)</h3>
+            <p class="text-stone-500 text-xs sm:text-sm leading-relaxed">
+              모니터 스크린 연동 및 완벽한 차음 벽체가 구비된 그룹 룸입니다. 스터디원 간의 소통이나 화상 통화, 집중적인 화상 피드백 면접 학습에 최적입니다.
+            </p>
+            <div class="pt-3 border-t border-stone-100 flex justify-between items-center text-xs text-[#2D5A27] font-bold">
+              <span>HD 모니터 미러링 시스템 지원</span>
+              <span class="flex items-center space-x-1"><span>자세히 보기</span> <i class="fa-solid fa-magnifying-glass-plus"></i></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-white rounded-3xl overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 border border-stone-200/60 group cursor-pointer" onclick="openLightbox('https://media.discordapp.net/attachments/1058202738749624472/1511409960838369310/KakaoTalk_20210313_191720001_13.png?ex=6a210277&is=6a1fb0f7&hm=d65b32309b0ce798e3e79e8e56d9f5fe05850a03dc0691060913d8cb6cd8dad5&=&format=webp&quality=lossless&width=828&height=1103', '쾌적하게 음식을 섭취할 수 있는 푸드 아일랜드', '독립된 환풍 시설과 아늑한 그린 컬러 펜던트 등이 설치되어 편안히 개인 도시락이나 간식을 맛볼 수 있는 푸드존입니다.')">
+          <div class="h-64 w-full overflow-hidden bg-stone-200 relative">
+            <img src="https://media.discordapp.net/attachments/1058202738749624472/1511409960838369310/KakaoTalk_20210313_191720001_13.png?ex=6a210277&is=6a1fb0f7&hm=d65b32309b0ce798e3e79e8e56d9f5fe05850a03dc0691060913d8cb6cd8dad5&=&format=webp&quality=lossless&width=828&height=1103" alt="이루다 푸드 아일랜드" class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500">
+            <div class="absolute top-4 right-4 bg-lime-600 text-white text-xs font-bold px-3 py-1 rounded-full">독립 식사공간</div>
+          </div>
+          <div class="p-6 space-y-2">
+            <h3 class="font-extrabold text-stone-900 text-lg group-hover:text-[#2D5A27] transition-colors">이루다 안심 푸드존</h3>
+            <p class="text-stone-500 text-xs sm:text-sm leading-relaxed">
+              쾌적하고 조용한 에코 환기 환풍구가 설치되어 냄새 유출을 방지합니다. 학습 구역 외에서 간식이나 집밥 도시락을 섭취할 수 있는 편의 공간입니다.
+            </p>
+            <div class="pt-3 border-t border-stone-100 flex justify-between items-center text-xs text-[#2D5A27] font-bold">
+              <span>전자레인지 완비 / 위생 식탁 상시 케어</span>
+              <span class="flex items-center space-x-1"><span>자세히 보기</span> <i class="fa-solid fa-magnifying-glass-plus"></i></span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="pricing" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto space-y-4 mb-12">
+        <span class="text-[#2D5A27] font-extrabold text-xs tracking-widest uppercase block">PRICING PLANS</span>
+        <h2 class="text-3xl font-extrabold text-stone-950 tracking-tight sm:text-4xl">
+          이루다 합리적인 이용 요금표
+        </h2>
+        <div class="h-1 w-20 bg-[#2D5A27] mx-auto rounded-full"></div>
+        <p class="text-stone-600 text-sm">
+          사진 요금표의 내용을 실시간 텍스트로 가공해 한눈에 가격 비교 및 검색이 가능하게 제공합니다.
+        </p>
+      </div>
+
+      <div class="max-w-md mx-auto mb-10">
+        <div class="relative">
+          <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <i class="fa-solid fa-magnifying-glass text-stone-400"></i>
+          </div>
+          <input type="text" id="priceSearch" onkeyup="filterPricing()" placeholder="원하시는 기간을 검색해보세요 (예: 1개월, 1주일, 1일)" class="w-full pl-10 pr-4 py-3 rounded-2xl border border-stone-300 focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent text-sm shadow-sm transition-all">
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-12 gap-8 items-start">
+        
+        <div class="lg:col-span-4 space-y-6">
+          <div class="bg-stone-50 border border-stone-200 p-6 rounded-2xl">
+            <h3 class="font-extrabold text-stone-900 text-lg flex items-center space-x-2">
+              <span class="w-3.5 h-3.5 rounded-full bg-emerald-600"></span>
+              <span>다인실 지정석 오픈룸</span>
+            </h3>
+            <p class="text-xs text-stone-500 mt-1">탁 트인 개방감과 높은 집중도를 선사하는 면학 공간</p>
+            <div class="mt-4 space-y-2">
+              <div class="flex justify-between text-sm py-1 border-b border-stone-200/50">
+                <span class="text-stone-600">1주일 (7일)</span>
+                <span class="font-bold text-stone-900">50,000원</span>
+              </div>
+              <div class="flex justify-between text-sm py-1 border-b border-stone-200/50">
+                <span class="text-stone-600">2주일 (14일)</span>
+                <span class="font-bold text-stone-900">80,000원</span>
+              </div>
+              <div class="flex justify-between text-sm py-1 border-b border-stone-200/50">
+                <span class="text-stone-600">3주일 (21일)</span>
+                <span class="font-bold text-stone-900">110,000원</span>
+              </div>
+              <div class="flex justify-between text-sm py-1 border-b border-stone-200/50">
+                <span class="text-[#2D5A27] font-bold">1개월</span>
+                <span class="font-bold text-stone-950">120,000원</span>
+              </div>
+              <div class="flex justify-between text-sm py-1">
+                <span class="text-stone-600">1일권</span>
+                <span class="font-bold text-stone-900">10,000원</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-emerald-50/50 border-2 border-emerald-800/20 p-6 rounded-2xl relative overflow-hidden">
+            <div class="absolute -top-3 -right-3 w-16 h-16 bg-emerald-600/10 rounded-full"></div>
+            <h3 class="font-extrabold text-stone-900 text-lg flex items-center space-x-2">
+              <span class="w-3.5 h-3.5 rounded-full bg-[#2D5A27]"></span>
+              <span>프리미엄 1인실</span>
+            </h3>
+            <p class="text-xs text-stone-500 mt-1">완전한 프라이빗과 몰입감을 최대로 높여주는 전용 공간</p>
+            <div class="mt-4 space-y-2">
+              <div class="flex justify-between text-sm py-1 border-b border-stone-200/50">
+                <span class="text-stone-600">1주일 (7일)</span>
+                <span class="font-bold text-stone-900">50,000원</span>
+              </div>
+              <div class="flex justify-between text-sm py-1 border-b border-stone-200/50">
+                <span class="text-stone-600">2주일 (14일)</span>
+                <span class="font-bold text-stone-900">90,000원</span>
+              </div>
+              <div class="flex justify-between text-sm py-1 border-b border-stone-200/50">
+                <span class="text-stone-600">3주일 (21일)</span>
+                <span class="font-bold text-stone-900">120,000원</span>
+              </div>
+              <div class="flex justify-between text-sm py-1 border-b border-stone-200/50">
+                <span class="text-[#2D5A27] font-bold">1개월</span>
+                <span class="font-bold text-[#2D5A27] text-base">150,000원</span>
+              </div>
+              <div class="flex justify-between text-sm py-1">
+                <span class="text-stone-600">1일권</span>
+                <span class="font-bold text-stone-900">10,000원</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-8">
+          <div class="overflow-hidden border border-stone-200 rounded-3xl shadow-sm bg-stone-50">
+            <table class="w-full text-left border-collapse" id="priceTable">
+              <thead>
+                <tr class="bg-[#2D5A27] text-white">
+                  <th class="p-4 sm:p-5 text-sm font-bold tracking-wider">사용 기간 (일수)</th>
+                  <th class="p-4 sm:p-5 text-sm font-bold tracking-wider">다인실 지정석 오픈룸</th>
+                  <th class="p-4 sm:p-5 text-sm font-bold tracking-wider">프리미엄 1인실</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-stone-200 bg-white text-stone-700 text-sm">
+                <tr class="hover:bg-emerald-50/20 transition-colors">
+                  <td class="p-4 sm:p-5 font-bold text-stone-900">1주일 (7일)</td>
+                  <td class="p-4 sm:p-5 font-semibold text-stone-700">50,000 원</td>
+                  <td class="p-4 sm:p-5 font-semibold text-stone-700">50,000 원</td>
+                </tr>
+                <tr class="hover:bg-emerald-50/20 transition-colors">
+                  <td class="p-4 sm:p-5 font-bold text-stone-900">2주일 (14일)</td>
+                  <td class="p-4 sm:p-5 font-semibold text-[#2D5A27]">80,000 원</td>
+                  <td class="p-4 sm:p-5 font-semibold text-stone-700">90,000 원</td>
+                </tr>
+                <tr class="hover:bg-emerald-50/20 transition-colors">
+                  <td class="p-4 sm:p-5 font-bold text-stone-900">3주일 (21일)</td>
+                  <td class="p-4 sm:p-5 font-semibold text-stone-700">110,000 원</td>
+                  <td class="p-4 sm:p-5 font-semibold text-stone-700">120,000 원</td>
+                </tr>
+                <tr class="hover:bg-emerald-50/10 bg-emerald-50/30 transition-colors">
+                  <td class="p-4 sm:p-5 font-black text-[#2D5A27]">1개월 (장기우대)</td>
+                  <td class="p-4 sm:p-5 font-bold text-stone-900">120,000 원</td>
+                  <td class="p-4 sm:p-5 font-bold text-[#2D5A27]">150,000 원</td>
+                </tr>
+                <tr class="hover:bg-emerald-50/20 transition-colors">
+                  <td class="p-4 sm:p-5 font-bold text-stone-900">3개월</td>
+                  <td class="p-4 sm:p-5 font-semibold text-stone-700">350,000 원</td>
+                  <td class="p-4 sm:p-5 font-semibold text-stone-700">440,000 원</td>
+                </tr>
+                <tr class="hover:bg-emerald-50/20 transition-colors">
+                  <td class="p-4 sm:p-5 font-bold text-stone-900">6개월</td>
+                  <td class="p-4 sm:p-5 font-semibold text-stone-700">680,000 원</td>
+                  <td class="p-4 sm:p-5 font-semibold text-stone-700">82,000 원</td>
+                </tr>
+                <tr class="hover:bg-emerald-50/20 transition-colors">
+                  <td class="p-4 sm:p-5 font-bold text-stone-900">1일권</td>
+                  <td class="p-4 sm:p-5 font-semibold text-stone-600">10,000 원</td>
+                  <td class="p-4 sm:p-5 font-semibold text-stone-600">10,000 원</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div class="mt-4 flex items-center space-x-2 text-xs text-stone-500 bg-stone-100 p-4 rounded-xl border border-stone-200">
+            <i class="fa-solid fa-circle-info text-emerald-700"></i>
+            <span>상기 이용요금은 현장 결제 및 상담을 통해 사전에 원활하게 할인 신청이 가능합니다. 단체 및 장기 이용 등록 시 특별 우대 혜택을 드립니다.</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-stone-50 border-t border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-6 relative">
+          <div class="absolute -top-6 -left-6 w-36 h-36 bg-[#2D5A27]/10 rounded-full blur-xl"></div>
+          <img src="https://media.discordapp.net/attachments/1058202738749624472/1511409960838369310/KakaoTalk_20210313_191720001_13.png?ex=6a210277&is=6a1fb0f7&hm=d65b32309b0ce798e3e79e8e56d9f5fe05850a03dc0691060913d8cb6cd8dad5&=&format=webp&quality=lossless&width=828&height=1103" alt="이루다 스터디 복도와 푸드테라스 상세" class="w-full h-[400px] object-cover rounded-3xl shadow-xl border border-stone-200/80">
+        </div>
+
+        <div class="lg:col-span-6 space-y-6">
+          <span class="text-[#2D5A27] font-extrabold text-xs tracking-widest uppercase block">Refresh Area Details</span>
+          <h2 class="text-3xl font-extrabold text-stone-950 tracking-tight sm:text-4xl">
+            지친 뇌를 깨워줄 아늑한 휴식 구역
+          </h2>
+          <div class="h-1 w-20 bg-[#2D5A27] rounded-full"></div>
+          <p class="text-stone-600 leading-relaxed">
+            공부 중간 중간 휴식은 성적 향상에 직결되는 매우 핵심적인 과정입니다. 이루다는 단순히 공부할 좌석만 주는 독서실이 아닌, 충분한 에너지를 재충전할 수 있는 특별 공간을 설계했습니다. 
+          </p>
+
+          <div class="space-y-4">
+            <div class="flex items-start space-x-3">
+              <div class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center text-[#2D5A27] shrink-0 mt-1">
+                <i class="fa-solid fa-check text-xs"></i>
+              </div>
+              <div>
+                <p class="font-bold text-stone-900">최고급 아라비카 원두커피 무제한 급수</p>
+                <p class="text-stone-500 text-xs">머리가 맑아지도록 돕는 최고급 원두커피가 무제한 무료 제공됩니다.</p>
+              </div>
+            </div>
+            <div class="flex items-start space-x-3">
+              <div class="w-6 h-6 rounded-full bg-emerald-100 flex items-center justify-center text-[#2D5A27] shrink-0 mt-1">
+                <i class="fa-solid fa-check text-xs"></i>
+              </div>
+              <div>
+                <p class="font-bold text-stone-900">오픈형 테라스 뷰 감상</p>
+                <p class="text-stone-500 text-xs">답답한 지하가 아닌 고층 조망권을 가로지르는 뷰에서 휴식할 수 있습니다.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="location" class="py-20 bg-stone-100 border-t border-stone-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid lg:grid-cols-12 gap-12 items-start">
+        
+        <div class="lg:col-span-5 space-y-8">
+          <div class="space-y-3">
+            <span class="inline-block text-xs font-bold text-emerald-800 bg-emerald-100 px-3 py-1 rounded-md uppercase">LOCATION INFO</span>
+            <h2 class="text-3xl font-extrabold text-stone-950 tracking-tight">이루다 오시는 길</h2>
+            <p class="text-stone-600 text-sm">관평동 테크노밸리 주요 학군 및 주거 전방 단지와 밀접한 엔젤빌딩 4층에 자리하고 있습니다.</p>
+          </div>
+
+          <div class="space-y-6">
+            <div class="flex items-start space-x-4">
+              <div class="w-10 h-10 rounded-xl bg-[#2D5A27] text-white flex items-center justify-center shrink-0 shadow-md">
+                <i class="fa-solid fa-location-dot"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-stone-800 mb-1 text-sm">도로명 주소</h4>
+                <p class="text-stone-600 text-sm font-medium leading-relaxed">
+                  대전광역시 유성구 관평2로 32-1 엔젤빌딩 4층
+                </p>
+                <button onclick="copyToClipboard('대전광역시 유성구 관평2로 32-1 엔젤빌딩 4층')" class="text-xs text-emerald-800 hover:text-[#1E3F1A] font-bold mt-1.5 flex items-center space-x-1 underline decoration-emerald-300">
+                  <span>주소 복사하기</span>
+                  <i class="fa-solid fa-copy"></i>
+                </button>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="w-10 h-10 rounded-xl bg-[#2D5A27] text-white flex items-center justify-center shrink-0 shadow-md">
+                <i class="fa-solid fa-headset"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-stone-800 mb-1 text-sm">대표 예약 및 제휴상담</h4>
+                <p class="text-stone-600 text-sm font-bold">042-933-0909</p>
+                <p class="text-xs text-stone-400 mt-0.5">상담 가용 시간: 매일 08:00 ~ 새벽 02:00</p>
+              </div>
+            </div>
+
+            <div class="flex items-start space-x-4">
+              <div class="w-10 h-10 rounded-xl bg-[#2D5A27] text-white flex items-center justify-center shrink-0 shadow-md">
+                <i class="fa-solid fa-bus"></i>
+              </div>
+              <div>
+                <h4 class="font-bold text-stone-800 mb-1 text-sm">인근 대중교통 노선안내</h4>
+                <p class="text-stone-600 text-xs leading-relaxed">
+                  <strong class="text-stone-800 font-semibold block">수변공원 정류소 도보 2분</strong>
+                  간선 노선: 301, 704, 802번<br>
+                  급행 노선: 급행 2번 연동
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="lg:col-span-7">
+          <div class="bg-white p-6 rounded-3xl border border-stone-200 shadow-xl space-y-4">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-2">
+                <span class="w-3 h-3 rounded-full bg-red-500 animate-pulse"></span>
+                <span class="text-xs font-bold text-stone-500 tracking-wide uppercase">Interactive Area Map</span>
+              </div>
+              <span class="text-xs text-stone-400">대전 유성구 관평동</span>
+            </div>
             
-            const liveStatusText = document.getElementById('live-status-text');
-            const statusContainer = liveStatusText.parentElement;
+            <div class="relative bg-stone-100 h-96 rounded-2xl overflow-hidden border border-stone-200 flex flex-col justify-between">
+              <div class="absolute inset-0">
+                <div class="absolute top-1/2 left-0 w-full h-16 bg-white border-y border-stone-200/80 -translate-y-1/2 flex items-center justify-center text-stone-300 font-bold tracking-widest text-xs pointer-events-none">관평2로</div>
+                <div class="absolute top-0 left-1/3 w-16 h-full bg-white border-x border-stone-200/80 -translate-x-1/2 flex items-center justify-center text-stone-300 font-bold tracking-widest text-xs rotate-90 pointer-events-none">테크노중앙로</div>
+                
+                <div class="absolute top-4 right-12 w-28 h-16 bg-stone-200/60 rounded border border-stone-300/40 flex items-center justify-center text-stone-400 font-medium text-xs shadow-sm">수변공원</div>
+                <div class="absolute bottom-4 left-6 w-36 h-16 bg-stone-200/60 rounded border border-stone-300/40 flex items-center justify-center text-slate-400 font-medium text-xs shadow-sm">테크노 4단지</div>
+                <div class="absolute bottom-4 right-10 w-24 h-16 bg-stone-200/60 rounded border border-stone-300/40 flex items-center justify-center text-slate-400 font-medium text-xs shadow-sm">농협 관평점</div>
+                
+                <div class="absolute top-8 left-12 w-44 h-24 bg-emerald-50/95 rounded-xl border-2 border-[#2D5A27] flex flex-col items-center justify-center shadow-lg transform -rotate-1">
+                  <span class="text-[10px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-full mb-1">여기에 위치</span>
+                  <span class="font-extrabold text-stone-900 text-sm">엔젤빌딩 (4층)</span>
+                  <span class="text-[10px] text-stone-500">이루다 스터디 스튜디오</span>
+                </div>
 
-            // Operational Hours: 08:00 AM - 02:00 AM (Next Day)
-            const isOpen = (hours >= 8 || hours < 2);
+                <div class="absolute top-[42%] left-[45%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col items-center">
+                  <div class="relative">
+                    <div class="w-10 h-10 bg-[#2D5A27] rounded-full flex items-center justify-center text-white shadow-xl animate-bounce">
+                      <i class="fa-solid fa-graduation-cap text-amber-300"></i>
+                    </div>
+                    <div class="absolute -bottom-1 left-1 w-8 h-2 bg-stone-900/30 rounded-full blur-[2px]"></div>
+                  </div>
+                </div>
+              </div>
 
-            if (isOpen) {
-                liveStatusText.textContent = "영업 중 • 매일 08:00 - 익일 02:00";
-                statusContainer.className = "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-500/10 backdrop-blur-md border border-emerald-500/20 mb-6 shadow-sm";
-                liveStatusText.className = "text-xs font-semibold tracking-wider text-emerald-400";
-            } else {
-                liveStatusText.textContent = "영업 종료 • 오전 8시 오픈";
-                statusContainer.className = "inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-rose-500/10 backdrop-blur-md border border-rose-500/20 mb-6 shadow-sm";
-                liveStatusText.className = "text-xs font-semibold tracking-wider text-rose-400";
-            }
-        }
+              <div class="relative z-10 m-3 self-end flex flex-col space-y-1">
+                <button onclick="zoomMap()" class="w-8 h-8 bg-white border border-stone-200 rounded-lg shadow flex items-center justify-center font-bold text-stone-600 hover:bg-stone-50 text-sm">+</button>
+                <button onclick="zoomMap()" class="w-8 h-8 bg-white border border-stone-200 rounded-lg shadow flex items-center justify-center font-bold text-stone-600 hover:bg-stone-50 text-sm">-</button>
+              </div>
 
-        // Initialize state on load
-        window.onload = function() {
-            updateOpeningStatus();
-            // Automatically refresh every 5 minutes
-            setInterval(updateOpeningStatus, 300000);
-        };
-
-        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-        const mobileMenu = document.getElementById('mobile-menu');
-
-        mobileMenuBtn.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-
-        function toggleMobileMenu() {
-            mobileMenu.classList.add('hidden');
-        }
-
-        function filterGallery(category) {
-            // Update filter button styling
-            const buttons = document.querySelectorAll('.gallery-btn');
-            buttons.forEach(btn => {
-                btn.classList.remove('bg-brand-700', 'text-white', 'shadow-md');
-                btn.classList.add('bg-white', 'text-zinc-600', 'hover:bg-zinc-100');
-            });
-
-            // Highlight target button
-            const activeBtn = event.currentTarget;
-            activeBtn.classList.remove('bg-white', 'text-zinc-600', 'hover:bg-zinc-100');
-            activeBtn.classList.add('bg-brand-700', 'text-white', 'shadow-md');
-
-            // Filter items
-            const items = document.querySelectorAll('.gallery-item');
-            items.forEach(item => {
-                if (category === 'all') {
-                    item.style.display = 'block';
-                } else if (item.classList.contains(category)) {
-                    item.style.display = 'block';
-                } else {
-                    item.style.display = 'none';
-                }
-            });
-        }
-
-        function openLightbox(imgSrc, title, desc) {
-            const lightbox = document.getElementById('lightbox');
-            const lightboxImg = document.getElementById('lightbox-image');
-            const lightboxTitle = document.getElementById('lightbox-title');
-            const lightboxDesc = document.getElementById('lightbox-desc');
-
-            lightboxImg.src = imgSrc;
-            lightboxTitle.textContent = title;
-            lightboxDesc.textContent = desc;
-
-            lightbox.classList.remove('hidden');
-            lightbox.classList.add('flex');
-            document.body.style.overflow = 'hidden'; // Lock scrolling
-        }
-
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.add('hidden');
-            lightbox.classList.remove('flex');
-            document.body.style.overflow = 'auto'; // Restore scrolling
-        }
-
-        function openOriginalPricingPhoto() {
-            openLightbox(
-                'image_4767ea.jpg', 
-                '이루다 독서실 정품 가격표', 
-                '매장에 등록되어 있는 원본 가격표 이미지입니다. 동일한 요금이 텍스트로 깔끔하고 정밀하게 작성되어 있으니 대조용으로 참고해 보세요.'
-            );
-        }
-
-        // Esc key closes lightbox
-        window.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') {
-                closeLightbox();
-            }
-        });
-
-        function searchPricing() {
-            const searchInput = document.getElementById('price-search').value.toLowerCase().trim();
-            const openItems = document.querySelectorAll('#open-price-list .price-item');
-            const privateItems = document.querySelectorAll('#private-price-list .price-item');
-            const emptyState = document.getElementById('search-empty-state');
+              <div class="relative z-10 p-3 bg-white/95 border-t border-stone-100 flex items-center justify-between text-xs text-stone-600 rounded-b-2xl">
+                <div class="flex items-center space-x-1.5">
+                  <span class="font-semibold text-stone-900">이루다 대전관평점</span>
+                  <span class="text-stone-400">|</span>
+                  <span>관평2로 32-1 엔젤빌딩 4층</span>
+                </div>
+                <div class="flex space-x-1.5 shrink-0">
+                  <a href="https://map.naver.com" target="_blank" class="bg-[#2D5A27] text-white font-bold px-2.5 py-1 rounded hover:bg-[#1E3F1A] transition-colors">실시간 길찾기</a>
+                </div>
+              </div>
+            </div>
             
-            let matchCount = 0;
+            <div id="toast" class="hidden bg-emerald-800 text-white text-xs px-4 py-3 rounded-xl flex items-center space-x-2 transition-all shadow-md">
+              <i class="fa-solid fa-circle-check"></i>
+              <span id="toast-message">클립보드에 주소가 복사되었습니다.</span>
+            </div>
+          </div>
+        </div>
 
-            function processItems(items) {
-                items.forEach(item => {
-                    const searchableTokens = item.getAttribute('data-period').toLowerCase();
-                    const textContent = item.textContent.toLowerCase();
-                    
-                    // Match query
-                    if (searchableTokens.includes(searchInput) || textContent.includes(searchInput)) {
-                        item.style.display = 'flex';
-                        item.classList.remove('opacity-30');
-                        // Add highlight class if searching actively
-                        if (searchInput !== '') {
-                            item.classList.add('bg-brand-100/25', 'p-2', 'rounded-lg');
-                        } else {
-                            item.classList.remove('bg-brand-100/25', 'p-2', 'rounded-lg');
-                        }
-                        matchCount++;
-                    } else {
-                        if (searchInput !== '') {
-                            // Dim non-matching entries for focus
-                            item.style.display = 'none';
-                        } else {
-                            item.style.display = 'flex';
-                            item.classList.remove('opacity-30', 'bg-brand-100/25', 'p-2', 'rounded-lg');
-                        }
-                    }
-                });
-            }
+      </div>
+    </div>
+  </section>
 
-            processItems(openItems);
-            processItems(privateItems);
+  <section class="bg-gradient-to-br from-[#1E3F1A] to-[#2D5A27] text-white py-16 text-center relative overflow-hidden">
+    <div class="absolute -top-32 -left-32 w-64 h-64 bg-amber-400 rounded-full blur-3xl opacity-10"></div>
+    <div class="max-w-4xl mx-auto px-4 relative z-10 space-y-6">
+      <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight">이루다 독서실에서 꿈을 준비해보세요.</h3>
+      <p class="text-emerald-100 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+        일일 이용 및 단체 좌석 임대, 월 장기 결제 시 추가 기간 증정 등 맞춤형 제도가 항시 적용 중입니다. 직접 방문하셔서 쾌적한 시설을 체험해 보세요.
+      </p>
+      <div class="flex justify-center gap-4 pt-2">
+        <a href="tel:042-933-0909" class="bg-amber-400 hover:bg-amber-500 text-stone-950 font-bold px-6 py-3.5 rounded-xl shadow-lg transition-transform hover:-translate-y-0.5">
+          실시간 빈 좌석 예약 문의
+        </a>
+      </div>
+    </div>
+  </section>
 
-            // Toggle empty matching state visibility
-            if (matchCount === 0 && searchInput !== '') {
-                emptyState.classList.remove('hidden');
-            } else {
-                emptyState.classList.add('hidden');
-            }
+  <footer class="bg-stone-900 text-stone-400 py-12 text-xs border-t border-stone-800">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-12 gap-8 items-center">
+      <div class="md:col-span-5 space-y-3">
+        <div class="flex items-center space-x-2 text-white">
+          <div class="w-6 h-6 bg-emerald-700 rounded flex items-center justify-center font-bold text-xs">이</div>
+          <span class="font-bold text-sm tracking-tight">이루다 스터디 스튜디오 대전관평점</span>
+        </div>
+        <p class="leading-relaxed">
+          상호명: 이루다 독서실 대전관평점 | 대표번호: 042-933-0909<br>
+          주소: 대전광역시 유성구 관평2로 32-1 엔젤빌딩 4층<br>
+          Copyright © 2026 이루다 독서실. All Rights Reserved.
+        </p>
+      </div>
+      <div class="md:col-span-7 flex flex-wrap md:justify-end gap-x-8 gap-y-4 text-stone-400">
+        <a href="#about" class="hover:text-white transition-colors">이루다 소개</a>
+        <a href="#spaces" class="hover:text-white transition-colors">공간 안내</a>
+        <a href="#pricing" class="hover:text-white transition-colors font-medium text-amber-300">이용 요금</a>
+        <a href="#location" class="hover:text-white transition-colors">오시는 길</a>
+      </div>
+    </div>
+  </footer>
+
+  <div id="lightbox" class="hidden fixed inset-0 z-50 bg-black/95 backdrop-blur-sm flex flex-col justify-center items-center p-4">
+    <button onclick="closeLightbox()" class="absolute top-6 right-6 text-white hover:text-slate-300 transition-colors focus:outline-none bg-stone-800/40 p-2.5 rounded-full" aria-label="닫기">
+      <i class="fa-solid fa-xmark text-lg"></i>
+    </button>
+    <div class="max-w-4xl w-full flex flex-col items-center">
+      <img id="lightbox-img" src="" alt="확대 이미지" class="max-h-[70vh] max-w-full rounded-2xl object-contain shadow-2xl border border-white/10">
+      <div class="mt-5 text-center px-4">
+        <h4 id="lightbox-title" class="text-white text-xl font-bold tracking-tight"></h4>
+        <p id="lightbox-caption" class="text-stone-400 text-sm mt-1 max-w-2xl"></p>
+        <p class="text-stone-500 text-xs mt-2">이루다 독서실 대전관평점 실제 시설 실물 촬영물</p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function copyToClipboard(text) {
+      const dummy = document.createElement("textarea");
+      document.body.appendChild(dummy);
+      dummy.value = text;
+      dummy.select();
+      document.execCommand("copy");
+      document.body.removeChild(dummy);
+
+      const toast = document.getElementById("toast");
+      const toastMsg = document.getElementById("toast-message");
+      toastMsg.innerText = "이루다 대전관평점 주소가 클립보드에 복사되었습니다!";
+      toast.classList.remove("hidden");
+      toast.classList.add("flex");
+      
+      setTimeout(() => {
+        toast.classList.add("hidden");
+        toast.classList.remove("flex");
+      }, 3000);
+    }
+
+    function filterPricing() {
+      const input = document.getElementById('priceSearch').value.toLowerCase();
+      const table = document.getElementById('priceTable');
+      const trs = table.getElementsByTagName('tr');
+
+      for (let i = 1; i < trs.length; i++) {
+        const rowText = trs[i].innerText.toLowerCase();
+        if (rowText.includes(input)) {
+          trs[i].style.display = "";
+        } else {
+          trs[i].style.display = "none";
         }
+      }
+    }
 
-        function clearSearch() {
-            document.getElementById('price-search').value = '';
-            searchPricing();
-        }
+    function zoomMap() {
+      const toast = document.getElementById("toast");
+      const toastMsg = document.getElementById("toast-message");
+      toastMsg.innerText = "이 약도 맵은 축척이 고정되어 있습니다. 정확한 길찾기는 우측 하단 [실시간 길찾기] 버튼을 활용해 주세요!";
+      toast.classList.remove("hidden");
+      toast.classList.add("flex");
+      
+      setTimeout(() => {
+        toast.classList.add("hidden");
+        toast.classList.remove("flex");
+      }, 3000);
+    }
 
-        function triggerToast(title, body) {
-            const toast = document.getElementById('toast');
-            const toastTitle = document.getElementById('toast-title');
-            const toastBody = document.getElementById('toast-body');
+    function openLightbox(src, title, caption) {
+      const lightbox = document.getElementById("lightbox");
+      const lightboxImg = document.getElementById("lightbox-img");
+      const lightboxTitle = document.getElementById("lightbox-title");
+      const lightboxCaption = document.getElementById("lightbox-caption");
 
-            toastTitle.textContent = title;
-            toastBody.textContent = body;
+      lightboxImg.src = src;
+      lightboxTitle.innerText = title;
+      lightboxCaption.innerText = caption;
+      lightbox.classList.remove("hidden");
+      
+      document.body.style.overflow = "hidden";
+    }
 
-            // Slide up & fade in
-            toast.classList.remove('hidden');
-            setTimeout(() => {
-                toast.classList.remove('translate-y-10', 'opacity-0');
-            }, 10);
+    function closeLightbox() {
+      const lightbox = document.getElementById("lightbox");
+      lightbox.classList.add("hidden");
+      
+      document.body.style.overflow = "";
+    }
 
-            // Fade out after 4 seconds
-            setTimeout(() => {
-                toast.classList.add('translate-y-10', 'opacity-0');
-                setTimeout(() => {
-                    toast.classList.add('hidden');
-                }, 300);
-            }, 4000);
-        }
-
-        function handleInquirySubmit(event) {
-            event.preventDefault();
-            
-            // Collect Form Values safely
-            const formInputs = event.target.querySelectorAll('input, select, textarea');
-            const name = formInputs[0].value;
-            const phone = formInputs[1].value;
-
-            // Trigger success message animation (No alerts!)
-            triggerToast(
-                `성공적으로 예약 완료!`, 
-                `${name}님(${phone.slice(-4)}), 무료 체험 상담 접수가 이루어졌습니다.`
-            );
-
-            // Clean up form
-            event.target.reset();
-        }
-    </script>
+    document.addEventListener('keydown', function(event) {
+      if (event.key === 'Escape') {
+        closeLightbox();
+      }
+    });
+  </script>
 </body>
 </html>
